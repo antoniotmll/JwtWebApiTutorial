@@ -45,7 +45,7 @@ namespace JwtWebApiTutorial.Controllers
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt) 
         {
-            using(var hmac = new HMACSHA512(user.PasswordSalt))
+            using(var hmac = new HMACSHA512(passwordSalt))
             {
                 var computeHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 return computeHash.SequenceEqual(passwordHash);
